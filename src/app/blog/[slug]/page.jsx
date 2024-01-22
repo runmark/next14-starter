@@ -1,7 +1,9 @@
 import Image from "next/image";
 import styles from "./singleBlogPost.module.css";
 
-const SingleBlogPost = () => {
+const SingleBlogPost = ({ params, searchParams }) => {
+    console.log("params: ", params);
+    console.log("searchParams: ", searchParams);
     return (
         <div className={styles.container}>
             <div className={styles.imgContainer}>
