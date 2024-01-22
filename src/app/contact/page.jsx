@@ -1,16 +1,33 @@
-/*
- * @Author: maxingmin ma_xingmin@163.com
- * @Date: 2024-01-13 09:20:12
- * @LastEditors: maxingmin ma_xingmin@163.com
- * @LastEditTime: 2024-01-13 09:40:05
- * @FilePath: /next14-starter/src/app/about/page.jsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
+"use client";
+import Image from "next/image";
+import styles from "./contact.module.css";
 
 const ContactPage = () => {
+
+    // const [isClient, setIsClient] = useState(false);
+
+    // useEffect(() => { setIsClient(true) }, []);
+
+    const a = Math.random();
+    console.log(a);
+
     return (
-        <div>
-            ContactPage
+        <div className={styles.container}>
+            <div className={styles.imgContainer}>
+                <Image src="/contact.png" alt="" fill className={styles.img} />
+            </div>
+            <div className={styles.formContainer}>
+                {/* <div suppressHydrationWarning>
+                    {a}
+                </div> */}
+                <form action="" className={styles.form}>
+                    <input type="text" placeholder="Name and Surname" />
+                    <input type="text" placeholder="Email Address" />
+                    <input type="text" placeholder="Phone Number (optional)" />
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Message" />
+                    <button className={styles.btn}>Send</button>
+                </form>
+            </div>
         </div>
     );
 }

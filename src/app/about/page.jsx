@@ -1,16 +1,39 @@
-/*
- * @Author: maxingmin ma_xingmin@163.com
- * @Date: 2024-01-13 09:20:12
- * @LastEditors: maxingmin ma_xingmin@163.com
- * @LastEditTime: 2024-01-13 09:38:58
- * @FilePath: /next14-starter/src/app/about/page.jsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
+
+import Image from "next/image";
+import styles from "./about.module.css";
+
 
 const AboutPage = () => {
+    // console.log("where it is?");
     return (
-        <div>
-            AboutPage
+        <div className={styles.container}>
+            <div className={styles.textContainer}>
+                <h2 className={styles.subtitle}>About Agency</h2>
+                <h1 className={styles.title}>We create digital ideas that are bigger,bolder, braver and better.</h1>
+                <p className={styles.desc}>
+                    We create digital ideas that are bigger, bolder, braver and better. We
+                    believe in good ideas flexibility and precission we re world？ S Our
+                    Special Team best consulting & finance solution provider. Wide range
+                    of web and software development services.
+                </p>
+                <div className={styles.boxes}>
+                    <div className={styles.box}>
+                        <h1>10 K+</h1>
+                        <p>Year of experience</p>
+                    </div>
+                    <div className={styles.box}>
+                        <h1>10 K+</h1>
+                        <p>Year of experience</p>
+                    </div>
+                    <div className={styles.box}>
+                        <h1>10 K+</h1>
+                        <p>Year of experience</p>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.imageContainer}>
+                <Image src="/about.png" alt="about image" className={styles.aboutImg} fill />
+            </div>
         </div>
     );
 }
