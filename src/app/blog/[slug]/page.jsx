@@ -17,6 +17,18 @@ import { getPost } from "@/lib/data";
 //     return res.json();
 // }
 
+export const generateMetadata = async ({ params }) => {
+
+
+    const { slug } = params;
+    const blog = await getPost(slug);
+
+    return {
+        title: blog.title,
+        description: blog.desc,
+    };
+}
+
 const SingleBlogPost = async ({ params }) => {
 
     const { slug } = params;
@@ -25,7 +37,7 @@ const SingleBlogPost = async ({ params }) => {
 
     // FETCH DATA WITHOUT AN API
     const post = await getPost(slug);
-    console.log("=======", slug, post);
+    // console.log("=======", slug, post);
 
 
     return (

@@ -1,6 +1,12 @@
-"use client";
+// "use client";
 import Image from "next/image";
 import styles from "./contact.module.css";
+
+export const metadata = {
+    title: 'contact | Next App',
+    description: 'contact | Next.js starter app',
+}
+
 
 const ContactPage = () => {
 
@@ -9,7 +15,7 @@ const ContactPage = () => {
     // useEffect(() => { setIsClient(true) }, []);
 
     const a = Math.random();
-    console.log(a);
+    // console.log(a);
 
     return (
         <div className={styles.container}>

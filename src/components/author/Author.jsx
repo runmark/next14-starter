@@ -18,7 +18,7 @@ import Image from "next/image";
 const Author = async ({ userId }) => {
 
     const user = await getUser(userId);
-    console.log("=======", userId, user);
+    // console.log("=======", userId, user);
 
     return (
         <div className={styles.container}>

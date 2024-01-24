@@ -16,11 +16,11 @@ import { connectToDb } from "./utils";
 // ]
 
 export const getPosts = async () => {
-    noStore();
+    // noStore();
     try {
         connectToDb();
         const posts = await Post.find();
-        console.log(posts);
+        // console.log(posts);
         return posts;
     } catch (err) {
         console.log(err);
