@@ -1,27 +1,28 @@
-import Image from "next/image";
-import styles from "./singleBlogPost.module.css";
 import Author from "@/components/author/Author";
+import Image from "next/image";
 import { Suspense } from "react";
-import { getPost } from "@/lib/data";
+import styles from "./singleBlogPost.module.css";
 
 
 // FETCH DATA WITH AN API
-// const getData = async ({ slug }) => {
+const getData = async ({ slug }) => {
 
-//     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`, { cache: "no-cache" });
+    const res = await fetch(`http://localhost:3000/api/blog/${slug}`, { cache: "no-cache" });
+    // console.log("========", `http://localhost:3000/api/blog/${slug}`);
 
-//     if (!res.ok) {
-//         throw new Error("sth went wrong");
-//     }
+    if (!res.ok) {
+        throw new Error("sth went wrong");
+    }
 
-//     return res.json();
-// }
+    return res.json();
+}
 
 export const generateMetadata = async ({ params }) => {
 
 
     const { slug } = params;
-    const blog = await getPost(slug);
+    // console.log("==========xxxxx", slug);
+    const blog = await getData({ slug });
 
     return {
         title: blog.title,
@@ -36,14 +37,14 @@ const SingleBlogPost = async ({ params }) => {
     // const post = await getData({ slug: slug });
 
     // FETCH DATA WITHOUT AN API
-    const post = await getPost(slug);
+    const post = await getData({ slug });
     // console.log("=======", slug, post);
 
 
     return (
         <div className={styles.container}>
             {
-                post.img &&
+                post?.img &&
                 <div className={styles.imgContainer}>
                     <Image src={post.img} alt="" fill
                         className={styles.img} />
