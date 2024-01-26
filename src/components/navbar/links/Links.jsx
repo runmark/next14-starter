@@ -1,9 +1,10 @@
 "use client";
 
+import { handleLogout } from "@/lib/action";
+import Image from "next/image";
 import { useState } from "react";
 import styles from "./links.module.css";
 import NavLink from "./navlink/NavLink";
-import Image from "next/image";
 
 
 const links = [
@@ -13,13 +14,14 @@ const links = [
     { title: "Blog", path: "/blog" },
 ];
 
-export default function Links() {
+export default function Links({ session }) {
 
     const [open, setOpen] = useState(false);
 
     //TODO temporary
-    const session = true;
-    const isAdmin = true;
+    // const session = auth();
+    // const isAdmin = true;
+    // console.log("=========", session);
 
     return (
         <div className={styles.container}>
@@ -29,10 +31,13 @@ export default function Links() {
                     link => <NavLink item={link} key={link.title} />
                 )}
                 {
-                    session ? (
+                    session?.user ? (
                         <>
-                            {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
-                            <button className={styles.logout}>Logout</button>
+                            {session.user.isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
+
+                            <form action={handleLogout}>
+                                <button className={styles.logout}>Logout</button>
+                            </form>
                         </>
                     )
                         : <NavLink item={{ title: "Login", path: "/login" }} />

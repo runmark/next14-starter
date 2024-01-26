@@ -19,7 +19,7 @@ const BlogPage = async () => {
 
     return (
         <div className={styles.container}>
-            {posts && posts.map(
+            {posts?.map(
                 (post) => {
                     return (
                         <div className={styles.post} key={post.id}>
