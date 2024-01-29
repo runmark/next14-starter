@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 500px;
+    padding: 50px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+
+    background-color: var(--bgSoft);
+
+    border-radius: 5px;
+}
