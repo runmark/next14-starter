@@ -49,3 +49,14 @@ export const getUser = async (id) => {
         throw new Error(err);
     }
 }
+
+export const getUsers = async () => {
+    noStore();
+    try {
+        connectToDb();
+        return await User.find();
+    } catch (err) {
+        console.log(err);
+        throw new Error(err);
+    }
+}

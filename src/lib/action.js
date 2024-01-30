@@ -27,7 +27,38 @@ export const addPost = async (formData) => {
         console.log(err);
         throw new Error(err);
     }
+}
 
+export const addUser = async (previousState, formData) => {
+    const { username, email, img, password } = Object.fromEntries(formData);
+
+    try {
+        connectToDb();
+
+        const user = await User.findOne({ username });
+
+        if (user) {
+            return { error: "user already registered! " };
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const newUser = new User({
+            username: username,
+            email: email,
+            password: hashedPassword,
+            img: img,
+        });
+
+        await newUser.save();
+        console.log("saved to db");
+        revalidatePath("/admin");
+        // return { success: true };
+    } catch (err) {
+        console.log(err);
+        return { error: "sth went wrong" };
+    }
 }
 
 export const deletePost = async (formData) => {
@@ -39,12 +70,30 @@ export const deletePost = async (formData) => {
         await Post.findByIdAndDelete(id);
         console.log('deleted from db');
         revalidatePath("/blog");
+        revalidatePath("/admin");
     } catch (err) {
         console.log(err);
         throw new Error(err);
     }
 
 }
+
+export const deleteUser = async (formData) => {
+
+    const { id } = Object.fromEntries(formData);
+
+    try {
+        connectToDb();
+        await Post.deleteMany({ userId: id });
+        await User.findByIdAndDelete(id);
+        console.log("deleted from db");
+        revalidatePath("/admin");
+    } catch (err) {
+        console.log(err);
+        throw new Error(err);
+    }
+}
+
 
 export const handleGithubLogin = async () => {
     await signIn('github');
